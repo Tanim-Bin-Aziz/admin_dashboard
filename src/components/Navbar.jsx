@@ -37,9 +37,9 @@ const Navbar = () => {
 
       {/* Mobile Dropdown (only on small screens) */}
       {isOpen && (
-        <ul className="md:hidden bg-gray-500 text-amber-50 px-4 pb-4">
+        <ul className="md:hidden bg-white justify-items-center-safe ml-12 rounded-2xl mb-5 w-3/4 px-4 pb-4">
           {routes.map((route) => (
-            <li key={route.name} className="py-2 border-b border-dark">
+            <li key={route.name} className="py-2 border-dark">
               <Link
                 to={route.path}
                 onClick={() => setIsOpen(false)}
