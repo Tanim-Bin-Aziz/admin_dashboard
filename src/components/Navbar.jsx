@@ -1,79 +1,57 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation(); // for active route highlight if needed
+  const [isOpen, setIsOpen] = useState(false);
 
-  const sidebarItems = [
-    { name: "Dashboard", path: "/" },
+  const routes = [
+    { name: "Dashboard", path: "/dashboard" },
     { name: "Doctor", path: "/doctor" },
     { name: "Nurse", path: "/nurse" },
     { name: "Lab", path: "/lab" },
-    { name: "Pharma Meds", path: "/pharma" },
-    { name: "Maintenance", path: "/maintenance" },
-    { name: "Earnings & Expenses", path: "/earnings" },
+    { name: "Patients", path: "/patients" },
     { name: "Inventory", path: "/inventory" },
-    // { name: "Patients", path: "/patients" },
-    // { name: "Profile", path: "/profile" }, // 👤 profile option
+    { name: "Maintenance", path: "/maintenance" },
+    { name: "Expense", path: "/expense" },
+    { name: "Earning", path: "/earning" },
   ];
 
   return (
-    <div className=" bg-gray-800 shadow px-6 py-4 flex  lg:justify-end  items-center relative">
-      <Link
-        to="/dashboard"
-        className="lg:hidden  md:hidden text-xl font-bold text-blue-600"
-      >
-        Next Dent
-      </Link>
-
-      {/* Desktop section */}
-      <div className="hidden md:flex items-center gap-6">
+    <nav className="bg-gray-800 shadow-md">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link
-          to="/profile"
-          className="text-gray-700 hover:text-blue-600 font-medium"
+          to="/"
+          className="text-xl font-bold sm:text-white  md:text-gray-800 lg:text-gray-800"
         >
-          Profile
+          Next Dent
         </Link>
-        <img
-          src="/logo.png"
-          alt="Logo"
-          className="w-10 h-10 rounded-full border"
-        />
+
+        {/* Mobile menu button only visible on small screens */}
+        <div className="md:hidden">
+          <button onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu Button */}
-      <button
-        onClick={() => setMenuOpen(!menuOpen)}
-        className="md:hidden focus:outline-none"
-      >
-        {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-      </button>
-
-      {/* Mobile Dropdown Menu */}
-      {menuOpen && (
-        <div className="absolute top-16 left-0 w-full bg-white shadow-md z-50 md:hidden">
-          <ul className="flex flex-col p-4 gap-2">
-            {sidebarItems.map((item, index) => (
-              <li key={index}>
-                <Link
-                  to={item.path}
-                  onClick={() => setMenuOpen(false)}
-                  className={`block px-4 py-2 rounded ${
-                    location.pathname === item.path
-                      ? "bg-blue-100 text-blue-700 font-semibold"
-                      : "text-gray-700 hover:bg-blue-50"
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+      {/* Mobile Dropdown (only on small screens) */}
+      {isOpen && (
+        <ul className="md:hidden bg-gray-500 text-amber-50 px-4 pb-4">
+          {routes.map((route) => (
+            <li key={route.name} className="py-2 border-b border-dark">
+              <Link
+                to={route.path}
+                onClick={() => setIsOpen(false)}
+                className="block w-full"
+              >
+                {route.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       )}
-    </div>
+    </nav>
   );
 };
 

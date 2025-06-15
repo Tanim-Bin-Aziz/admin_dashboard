@@ -36,27 +36,6 @@ function App() {
           </div>
         </div>
       </Router>
-
-      {/* <Router>
-        <div className="flex">
-          <Sidebar />
-          <div className="flex-1 flex flex-col">
-            <Navbar />
-            <main className="flex-1 p-4 bg-gray-100">
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/doctor" element={<Doctor />} />
-                <Route path="/nurse" element={<Nurse />} />
-                <Route path="/lab" element={<Lab />} />
-                <Route path="/pharma" element={<Pharma />} />
-                <Route path="/maintenance" element={<Maintenance />} />
-                <Route path="/earnings" element={<Earnings />} />
-              </Routes>
-            </main>
-          </div>
-        </div>
-      </Router> */}
     </>
   );
 }

@@ -19,7 +19,7 @@ const menu = [
 const Sidebar = () => {
   return (
     <div className="w-64 bg-gray-800 text-white min-h-screen p-4 hidden md:block">
-      <h2 className="text-2xl font-bold mb-6">Next Den</h2>
+      <h2 className="text-2xl font-bold mb-6">Next Dent</h2>
       {menu.map((item) => (
         <NavLink
           key={item.to}
